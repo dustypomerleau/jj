@@ -96,7 +96,10 @@ fn test_no_subcommand() {
     │  (empty) (no description set)
     ~
     "###);
-    insta::assert_snapshot!(test_env.jj_cmd_success(&repo_path, &["-r", "show"]), @r###"
+
+    // Multiple default command strings work.
+    test_env.add_config(r#"ui.default-command=["log", "-r", "show"]"#);
+    insta::assert_snapshot!(test_env.jj_cmd_success(&repo_path, &[]), @r###"
     @  qpvuntsm test.user@example.com 2001-02-03 04:05:07.000 +07:00 help log show 230dd059
     │  (empty) (no description set)
     ~

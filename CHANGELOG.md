@@ -94,6 +94,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   defined template names when no argument is given, assisting the user in making
   a selection.
 
+* `ui.default-command` now accepts multiple string arguments, for more complex
+  default `jj` commands.
+
 ### Fixed bugs
 
 * On Windows, symlinks in the repo are now supported when Developer Mode is enabled.
