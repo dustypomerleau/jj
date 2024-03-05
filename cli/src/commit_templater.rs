@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use std::any::Any;
 use std::cmp::max;
 use std::collections::HashMap;
 use std::io;
 use std::rc::Rc;
 
 use itertools::Itertools as _;
+use jj_lib::any_map::AnyMap;
 use jj_lib::backend::{ChangeId, CommitId};
 use jj_lib::commit::Commit;
 use jj_lib::hex_util::to_reverse_hex;
@@ -50,6 +52,7 @@ pub struct CommitTemplateLanguage<'repo> {
     id_prefix_context: &'repo IdPrefixContext,
     build_fn_table: CommitTemplateBuildFnTable<'repo>,
     keyword_cache: CommitKeywordCache,
+    cache_extensions: AnyMap,
 }
 
 impl<'repo> CommitTemplateLanguage<'repo> {
@@ -71,6 +74,7 @@ impl<'repo> CommitTemplateLanguage<'repo> {
             id_prefix_context,
             build_fn_table,
             keyword_cache: CommitKeywordCache::default(),
+            cache_extensions: AnyMap::new(),
         }
     }
 }
@@ -154,6 +158,10 @@ impl<'repo> CommitTemplateLanguage<'repo> {
 
     pub fn keyword_cache(&self) -> &CommitKeywordCache {
         &self.keyword_cache
+    }
+
+    pub fn cache_extension<T: Any>(&self, generator: impl FnOnce() -> T) -> &T {
+        self.cache_extensions.insert(generator)
     }
 
     pub fn wrap_commit(
