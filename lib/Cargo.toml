@@ -41,6 +41,7 @@ itertools = { workspace = true }
 jj-lib-proc-macros = { workspace = true }
 maplit = { workspace = true }
 once_cell = { workspace = true }
+once_map = { workspace = true }
 pest = { workspace = true }
 pest_derive = { workspace = true }
 pollster = { workspace = true }
