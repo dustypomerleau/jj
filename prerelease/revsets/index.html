@@ -792,6 +792,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#date-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Date patterns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aliases" class="md-nav__link">
     <span class="md-ellipsis">
       Aliases
@@ -1473,6 +1482,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#date-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Date patterns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aliases" class="md-nav__link">
     <span class="md-ellipsis">
       Aliases
@@ -1802,6 +1820,14 @@ aren't included in <code>remote_branches()</code>.</p>
 given <a href="#string-patterns">string pattern</a>.</p>
 </li>
 <li>
+<p><code>author_date(pattern)</code>: Commits with author dates matching the specified <a href="#date-patterns">date
+  pattern</a>.</p>
+</li>
+<li>
+<p><code>committer_date(pattern)</code>: Commits with committer dates matching the specified
+  <a href="#date-patterns">date pattern</a>.</p>
+</li>
+<li>
 <p><code>empty()</code>: Commits modifying no files. This also includes <code>merges()</code> without
   user modifications and <code>root()</code>.</p>
 </li>
@@ -1889,9 +1915,30 @@ o root()
 <li><code>exact:"string"</code>: Matches strings exactly equal to <code>string</code>.</li>
 <li><code>glob:"pattern"</code>: Matches strings with Unix-style shell <a href="https://docs.rs/glob/latest/glob/struct.Pattern.html">wildcard
   <code>pattern</code></a>.</li>
+<li><code>regex:"pattern"</code>: Matches substrings with <a href="https://docs.rs/regex/latest/regex/#syntax">regular
+  expression <code>pattern</code></a>.</li>
 </ul>
 <p>You can append <code>-i</code> after the kind to match case‐insensitively (e.g.
 <code>glob-i:"fix*jpeg*"</code>).</p>
+<h2 id="date-patterns">Date patterns<a class="headerlink" href="#date-patterns" title="Permanent link">&para;</a></h2>
+<p>Functions that perform date matching support the following pattern syntax:</p>
+<ul>
+<li><code>after:"string"</code>: Matches dates exactly at or after the given date.</li>
+<li><code>before:"string"</code>: Matches dates before, but not including, the given date.</li>
+</ul>
+<p>Date strings can be specified in several forms, including:</p>
+<ul>
+<li>2024-02-01</li>
+<li>2024-02-01T12:00:00</li>
+<li>2024-02-01T12:00:00-08:00</li>
+<li>2024-02-01 12:00:00</li>
+<li>2 days ago</li>
+<li>5 minutes ago</li>
+<li>yesterday</li>
+<li>yesterday 5pm</li>
+<li>yesterday 10:30</li>
+<li>yesterday 15:30</li>
+</ul>
 <h2 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h2>
 <p>New symbols and functions can be defined in the config file, by using any
 combination of the predefined symbols/functions and other aliases.</p>
@@ -1900,7 +1947,7 @@ function will be shadowed by name, and can't co-exist with aliases.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[revset-aliases]</span>
 <span class="s1">&#39;HEAD&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;@-&#39;</span>
-<span class="s1">&#39;user()&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;</span><span class="err">user(&quot;me@example.org&quot;)</span>
+<span class="s1">&#39;user()&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;user(&quot;me@example.org&quot;)&#39;</span>
 <span class="s1">&#39;user(x)&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;author(x) | committer(x)&#39;</span>
 </code></pre></div>
 <h3 id="built-in-aliases">Built-in Aliases<a class="headerlink" href="#built-in-aliases" title="Permanent link">&para;</a></h3>
@@ -1924,21 +1971,27 @@ always resolves to exactly one commit. For example:</p>
 </code></pre></div>
 </li>
 <li>
+<p><code>builtin_immutable_heads()</code>: Resolves to <code>trunk() | tags() | untracked_remote_branches()</code>.
+   It is used as the default definition for <code>immutable_heads()</code> below. it is not
+   recommended to redefined this alias. Prefer to redefine <code>immutable_heads()</code> instead.</p>
+</li>
+<li>
 <p><code>immutable_heads()</code>: Resolves to <code>trunk() | tags() |
-  untracked_remote_branches()</code> by default. See
-  <a href="../config/#set-of-immutable-commits">here</a> for details.</p>
+  untracked_remote_branches()</code> by default. It is actually defined as <code>builtin_immutable_heads()</code>,
+  and can be overridden as required.
+  See <a href="../config/#set-of-immutable-commits">here</a> for details.</p>
 </li>
 <li>
 <p><code>immutable()</code>: The set of commits that <code>jj</code> treats as immutable. This is
-  equivalent to <code>::(immutable_heads() | root())</code>. Note that modifying this will
-  <em>not</em> change whether a commit is immutable. To do that, edit
-  <code>immutable_heads()</code>.</p>
+  equivalent to <code>::(immutable_heads() | root())</code>. It is not recommended to redefine
+  this alias. Note that modifying this will <em>not</em> change whether a commit is immutable.
+  To do that, edit <code>immutable_heads()</code>. </p>
 </li>
 <li>
 <p><code>mutable()</code>: The set of commits that <code>jj</code> treats as mutable. This is
-  equivalent to <code>~immutable()</code>. Note that modifying this will
-  <em>not</em> change whether a commit is immutable. To do that, edit
-  <code>immutable_heads()</code>.</p>
+  equivalent to <code>~immutable()</code>. It is not recommended to redefined this alias.
+  Note that modifying this will <em>not</em> change whether a commit is immutable.
+  To do that, edit <code>immutable_heads()</code>.</p>
 </li>
 </ul>
 <h2 id="the-all-modifier">The <code>all:</code> modifier<a class="headerlink" href="#the-all-modifier" title="Permanent link">&para;</a></h2>

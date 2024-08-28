@@ -1470,6 +1470,11 @@
 
 
 <h1 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Hint:</strong> This tutorial has become somewhat out of date. Many people find
+  the alternative (not quite finished) <a href="https://steveklabnik.github.io/jujutsu-tutorial/">tutorial by Steve
+  Klabnik</a> helpful. </p>
+</blockquote>
 <p>This text assumes that the reader is familiar with Git.</p>
 <h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
 <p>If you haven't already, make sure you
@@ -1518,7 +1523,7 @@ Parent<span class="w"> </span>commit:<span class="w"> </span>orrkosyo<span class
 <p>Note that you didn't have to tell Jujutsu to add the change like you would with
 <code>git add</code>. You actually don't even need to tell it when you add new files or
 remove existing files. To untrack a path, add it to your <code>.gitignore</code> and run
-<code>jj untrack &lt;path&gt;</code>.</p>
+<code>jj file untrack &lt;path&gt;</code>.</p>
 <p>To see the diff, run <code>jj diff</code>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>diff<span class="w"> </span>--git<span class="w">  </span><span class="c1"># Feel free to skip the `--git` flag</span>
 diff<span class="w"> </span>--git<span class="w"> </span>a/README<span class="w"> </span>b/README
@@ -1608,6 +1613,11 @@ function in the revset matches it.</p>
 ancestors (<code>::foo</code>), descendants (<code>foo::</code>), DAG range (<code>foo::bar</code>, like
 <code>git log --ancestry-path</code>), range (<code>foo..bar</code>, same as Git's). See
 <a href="../revsets/">the revset documentation</a> for all revset operators and functions.</p>
+<blockquote>
+<p><strong>Hint:</strong> If the default <code>jj log</code> omits some commits you expect to see, you
+can always run <code>jj log -r ::</code> (or, equivalently, <code>jj log -r 'all()'</code>) to see
+all the commits.</p>
+</blockquote>
 <h2 id="conflicts">Conflicts<a class="headerlink" href="#conflicts" title="Permanent link">&para;</a></h2>
 <p>Now let's see how Jujutsu deals with merge conflicts. We'll start by making some
 commits. We use <code>jj new</code> with the <code>--message</code>/<code>-m</code> option to set change

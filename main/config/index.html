@@ -793,6 +793,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Diff format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#color-words-diff-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color-words diff options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1029,6 +1044,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code-formatting-and-other-file-content-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code formatting and other file content transformations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code formatting and other file content transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enforce-coding-style-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enforce coding style rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-and-remove-duplicate-lines-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sort and remove duplicate lines from a file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-order-of-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution order of tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commit-signing" class="md-nav__link">
     <span class="md-ellipsis">
       Commit Signing
@@ -1102,6 +1159,15 @@
   <a href="#prefix-for-generated-branches-on-push" class="md-nav__link">
     <span class="md-ellipsis">
       Prefix for generated branches on push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-of-private-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set of private commits
     </span>
   </a>
   
@@ -1918,6 +1984,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Diff format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#color-words-diff-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color-words diff options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2154,6 +2235,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code-formatting-and-other-file-content-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code formatting and other file content transformations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code formatting and other file content transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enforce-coding-style-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enforce coding style rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-and-remove-duplicate-lines-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sort and remove duplicate lines from a file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-order-of-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution order of tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commit-signing" class="md-nav__link">
     <span class="md-ellipsis">
       Commit Signing
@@ -2227,6 +2350,15 @@
   <a href="#prefix-for-generated-branches-on-push" class="md-nav__link">
     <span class="md-ellipsis">
       Prefix for generated branches on push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-of-private-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set of private commits
     </span>
   </a>
   
@@ -2447,9 +2579,21 @@ subcommand name, subcommand alias, or user-defined alias (defaults to <code>"log
 <div class="highlight"><pre><span></span><code><span class="n">ui</span><span class="p">.</span><span class="n">default-command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;log&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--reversed&quot;</span><span class="p">]</span>
 </code></pre></div>
 <h3 id="default-description">Default description<a class="headerlink" href="#default-description" title="Permanent link">&para;</a></h3>
-<p>The value of the <code>ui.default-description</code> setting will be used to prepopulate
-the editor when describing changes with an empty description. This could be a
-useful reminder to fill in things like BUG=, TESTED= etc.</p>
+<p>The editor content of a commit description can be populated by the
+<code>draft_commit_description</code> template.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[templates]</span>
+<span class="n">draft_commit_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">concat(</span>
+<span class="s1">  description,</span>
+<span class="s1">  surround(</span>
+<span class="s1">    &quot;\nJJ: This commit contains the following changes:\n&quot;, &quot;&quot;,</span>
+<span class="s1">    indent(&quot;JJ:     &quot;, diff.stat(72)),</span>
+<span class="s1">  ),</span>
+<span class="s1">)</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div>
+<p>The value of the <code>ui.default-description</code> setting can also be used in order to
+fill in things like BUG=, TESTED= etc.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ui</span><span class="p">.</span><span class="n">default-description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">TESTED=TODO&quot;</span>
 </code></pre></div>
 <h3 id="diff-colors-and-styles">Diff colors and styles<a class="headerlink" href="#diff-colors-and-styles" title="Permanent link">&para;</a></h3>
@@ -2463,6 +2607,29 @@ can override the default style with the following keys:</p>
 <h3 id="diff-format">Diff format<a class="headerlink" href="#diff-format" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Possible values: &quot;color-words&quot; (default), &quot;git&quot;, &quot;summary&quot;</span>
 <span class="n">ui</span><span class="p">.</span><span class="n">diff</span><span class="p">.</span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git&quot;</span>
+</code></pre></div>
+<h4 id="color-words-diff-options">Color-words diff options<a class="headerlink" href="#color-words-diff-options" title="Permanent link">&para;</a></h4>
+<p>In color-words diffs, changed words are displayed inline by default. Because
+it's difficult to read a diff line with many removed/added words, there's a
+threshold to switch to traditional separate-line format.</p>
+<ul>
+<li>
+<p><code>max-inline-alternation</code>: Maximum number of removed/added word alternation to
+  inline. For example, <code>&lt;added&gt; ... &lt;added&gt;</code> sequence has 1 alternation, so the
+  line will be inline if <code>max-inline-alternation &gt;= 1</code>. <code>&lt;added&gt; ... &lt;removed&gt;
+  ... &lt;added&gt;</code> sequence has 3 alternation.</p>
+<ul>
+<li><code>0</code>: disable inlining, making <code>--color-words</code> more similar to <code>--git</code></li>
+<li><code>1</code>: inline removes-only or adds-only lines</li>
+<li><code>2</code>, <code>3</code>, ..: inline up to <code>2</code>, <code>3</code>, .. alternation</li>
+<li><code>-1</code>: inline all lines</li>
+</ul>
+<p>The default is <code>3</code>.</p>
+<p><strong>This parameter is experimental.</strong> The definition is subject to change.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">[diff.color-words]</span>
+<span class="n">max-inline-alternation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
 </code></pre></div>
 <h3 id="generating-diffs-by-external-command">Generating diffs by external command<a class="headerlink" href="#generating-diffs-by-external-command" title="Permanent link">&para;</a></h3>
 <p>If <code>ui.diff.tool</code> is set, the specified diff command will be called instead of
@@ -2759,11 +2926,11 @@ experience, you can follow <a href="https://github.com/martinvonz/jj/wiki/Vim#us
 <p>The <code>ui.merge-editor</code> key specifies the tool used for three-way merge tools
 by <code>jj resolve</code>. For example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Use merge-tools.meld.merge-args</span>
-<span class="n">ui</span><span class="p">.</span><span class="n">merge-editor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meld&quot;</span><span class="w">  </span><span class="c1"># Or &quot;vscode&quot; or &quot;kdiff3&quot; or &quot;vimdiff&quot;</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">merge-editor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meld&quot;</span><span class="w">  </span><span class="c1"># Or &quot;vscode&quot; or &quot;vscodium&quot; or &quot;kdiff3&quot; or &quot;vimdiff&quot;</span>
 <span class="c1"># Specify merge-args inline</span>
 <span class="n">ui</span><span class="p">.</span><span class="n">merge-editor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;meld&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;$left&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;$base&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;$right&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-o&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;$output&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>The "vscode", "meld", "kdiff3", and "vimdiff" tools can be used out of the box,
+<p>The "vscode", "vscodium", "meld", "kdiff3", and "vimdiff" tools can be used out of the box,
 as long as they are installed.</p>
 <p>Using VS Code as a merge tool works well with VS Code's <a href="https://code.visualstudio.com/docs/remote/remote-overview">Remote
 Development</a>
@@ -2815,6 +2982,49 @@ tool fill it in). To do that, set the
 the conflict is done, <code>jj</code> assumes that the conflict was only partially resolved
 and parses the conflict markers to get the new state of the conflict. The
 conflict is considered fully resolved when there are no conflict markers left.</p>
+<h2 id="code-formatting-and-other-file-content-transformations">Code formatting and other file content transformations<a class="headerlink" href="#code-formatting-and-other-file-content-transformations" title="Permanent link">&para;</a></h2>
+<p>The <code>jj fix</code> command allows you to efficiently rewrite files in complex commit
+graphs with no risk of introducing conflicts, using tools like <code>clang-format</code> or
+<code>prettier</code>. The tools run as subprocesses that take file content on standard
+input and repeat it, with any desired changes, on standard output. The file is
+only rewritten if the subprocess produces a successful exit code.</p>
+<h3 id="enforce-coding-style-rules">Enforce coding style rules<a class="headerlink" href="#enforce-coding-style-rules" title="Permanent link">&para;</a></h3>
+<p>Suppose you want to use <code>clang-format</code> to format your <code>*.c</code> and <code>*.h</code> files,
+as well as sorting their <code>#include</code> directives.</p>
+<p><code>jj fix</code> provides the file content anonymously on standard input, but the name
+of the file being formatted may be important for include sorting or other output
+like error messages. To address this, you can use the <code>$path</code> substitution to
+provide the name of the file in a command argument.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[fix.tools.clang-format]</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/clang-format&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--sort-includes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--assume-filename=$path&quot;</span><span class="p">]</span>
+<span class="n">patterns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;glob:&#39;**/*.c&#39;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;glob:&#39;**/*.h&#39;&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="sort-and-remove-duplicate-lines-from-a-file">Sort and remove duplicate lines from a file<a class="headerlink" href="#sort-and-remove-duplicate-lines-from-a-file" title="Permanent link">&para;</a></h3>
+<p><code>jj fix</code> can also be used with tools that are not considered code formatters.</p>
+<p>Suppose you have a list of words in a text file in your repository, and you want
+to keep the file sorted alphabetically and remove any duplicate words.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[fix.tools.sort-word-list]</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-u&quot;</span><span class="p">]</span>
+<span class="n">patterns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;word_list.txt&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="execution-order-of-tools">Execution order of tools<a class="headerlink" href="#execution-order-of-tools" title="Permanent link">&para;</a></h3>
+<p>If two or more tools affect the same file, they are executed in the ascending
+lexicographical order of their configured names. This will remain as a tie
+breaker if other ordering mechanisms are introduced in the future. If you use
+numbers in tool names to control execution order, remember to include enough
+leading zeros so that, for example, <code>09</code> sorts before <code>10</code>.</p>
+<p>Suppose you want to keep only the 10 smallest numbers in a text file that
+contains one number on each line. This can be accomplished with <code>sort</code> and
+<code>head</code>, but execution order is important.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[fix.tools.1-sort-numbers-file]</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-n&quot;</span><span class="p">]</span>
+<span class="n">patterns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numbers.txt&quot;</span><span class="p">]</span>
+
+<span class="k">[fix.tools.2-truncate-numbers-file]</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">]</span>
+<span class="n">patterns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numbers.txt&quot;</span><span class="p">]</span>
+</code></pre></div>
 <h2 id="commit-signing">Commit Signing<a class="headerlink" href="#commit-signing" title="Permanent link">&para;</a></h2>
 <p><code>jj</code> can be configured to sign and verify the commits it creates using either 
 GnuPG or SSH signing keys.</p>
@@ -2841,7 +3051,7 @@ To consider expired keys as invalid you can set:</p>
 <span class="n">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ssh&quot;</span>
 <span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj+J6N6SO+4P8dOZqfR1oiay2yxhhHnagH52avUqw5h&quot;</span>
 <span class="c1">## You can also use a path instead of embedding the key</span>
-<span class="c1"># key = &quot;/home/me/.ssh/id_for_signing.pub&quot;</span>
+<span class="c1"># key = &quot;~/.ssh/id_for_signing.pub&quot;</span>
 </code></pre></div>
 <p>By default the ssh backend will look for a <code>ssh-keygen</code> binary on your path. If you want
 to change the program used or specify a path to <code>ssh-keygen</code> explicitly you can set:</p>
@@ -2909,6 +3119,18 @@ example:</p>
 <div class="codehilite"><pre><span></span><code>git.push-branch-prefix = &quot;martinvonz/push-&quot;
 </code></pre></div>
 
+<h3 id="set-of-private-commits">Set of private commits<a class="headerlink" href="#set-of-private-commits" title="Permanent link">&para;</a></h3>
+<p>You can configure the set of private commits by setting <code>git.private-commits</code> to
+a revset. The value is a revset of commits that Jujutsu will refuse to push. If
+unset, all commits are eligible to be pushed.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Prevent pushing work in progress or anything explicitly labeled &quot;private&quot;</span>
+<span class="n">git</span><span class="p">.</span><span class="n">private-commits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;description(glob:&#39;wip:*&#39;) | description(glob:&#39;private:*&#39;)&quot;</span>
+</code></pre></div>
+<p>If a commit is in <code>git.private-commits</code> but is already on the remote, then it is
+not considered a private commit. Commits that are immutable are also excluded
+from the private set.</p>
+<p>Private commits prevent their descendants from being pushed, since doing so
+would require pushing the private commit as well.</p>
 <h2 id="filesystem-monitor">Filesystem monitor<a class="headerlink" href="#filesystem-monitor" title="Permanent link">&para;</a></h2>
 <p>In large repositories, it may be beneficial to use a "filesystem monitor" to
 track changes to the working copy. This allows <code>jj</code> to take working copy
